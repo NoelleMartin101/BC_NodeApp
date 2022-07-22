@@ -1,26 +1,36 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+<%- include partials/header.ejs %>
     <div class="mainTable">
-      <h1><%= title %></h1>
-      <form action="/" method="post">
-        <div class="mainButtons">
-          <a class="btn nftBtn"  href="/ViewAthleteProfile" > Athlete </a>
-          <a class="btn nftBtn" href="/ViewAthleteProfile"> Judge </a>
-          <div display="block-inline">
-            <button type="submit" class="nftSmallBtn">New Athlete</button><button type="submit" class="nftSmallBtn">New Judge</button>
+      <br/>
+        <div class="float-container">
+          <div class="float-child">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="panel panel-default panel-pet">              
+                <div class="panel-body">
+                  <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;"
+                    src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
+                  <br /> <br />
+                  <button class="btn btn-default btn-adopt" type="button" data-id="0"><a class="btn logInBtn" href="/ViewAthleteProfile"> Athlete Log In </a></button>
+                  <br /><br />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="float-child">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="panel panel-default panel-pet">
+                <div class="panel-body">
+                  <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;"
+                    src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
+                  <br /><br />
+                  <button class="btn btn-default btn-adopt" type="button" data-id="0"><a class="btn logInBtn" href="/ViewJudgeProfile"> Judge Log In </a></button>
+                  <br />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <br/><br /><br /><br />
-        <p>Test Submit Score</p>
-        <label for="score">Score</label>
-        <input type="text" name="score" />
-        <button type="submit">Submit Score</button>
-      </form>
+        <br /><br />
+        <button class="btn btn-default" type="button" data-id="0"><a href="/createAccount"> Create Account </a></button>
+        <button class="btn btn-default" type="button" data-id="0"><a href="/createAccount"> Forgot Password </a></button>
     </div>
-  </body>
-</html>
+<%- include partials/footer.ejs %>

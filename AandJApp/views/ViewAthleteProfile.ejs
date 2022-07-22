@@ -1,24 +1,64 @@
-<!DOCTYPE html>
-<html>
+<%- include partials/header.ejs %>
+<style>
+    table.SpaciousHalf {
+        margin: 35px 50px;
+        font-size: 10pt;
+        background-color: transparent;
+        border: 1pt solid #EDEDED;
+        }
 
-<head>
-    <title>
-        <%= title %>
-    </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
+        table.SpaciousHalf td {
+        padding: 10px;
+        vertical-align: top;
+        border: 1pt solid #EDEDED;
+        }
 
-<body>
-    <div class="mainTable">
-        <h1>
-            <%= title %>
-        </h1>
-        <form action="/" method="post">
-           View Athlete Profile
+        table.SpaciousHalf td p {
+        padding: 10px;
+        border: 1pt solid #EDEDED;
+        }
 
-        <a class="btn nftSmallBtn" href="/ViewAthleteBenchmarks"> View Benchmarks </a>
-        </form>
+        .spaciousHalfTitleCell {
+        width: 120px;
+        background-color: transparent;
+        padding-left: 5px;
+        font-weight: bold;
+        }
+</style>
+    <div class="mainTable">        
+           <br/><br />
+        <table class="SpaciousHalf">    
+            <tr>
+                <td class="spaciousHalfTitleCell">Name</td>
+                <td>Emma McQuaid</td>
+                <td rowspan="10">
+                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="/ViewAthleteBenchmarks">View Benchmarks </a></button><br/><br />
+                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="/ViewAthleteBenchmarks">Register for Open </a></button><br /><br />
+                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="/ViewAthleteBenchmarks">Submit Scores </a></button><br /><br />
+                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="/ViewAthleteBenchmarks">View Event WODs </a></button><br /><br />
+                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="/ViewAthleteBenchmarks">Previous Events </a></button> <br /><br />
+            </tr>
+            <tr>
+                <td class="spaciousHalfTitleCell">Date of Birth</td>
+                <td>19/02/1992</td>
+                
+            </tr>
+            <tr>
+                <td class="spaciousHalfTitleCell">Affiliate</td>
+                <td>Sligo</td>
+            </tr>
+            <tr>
+                <td class="spaciousHalfTitleCell">Height</td>
+                <td>162</td>
+            </tr>
+            <tr>
+                <td class="spaciousHalfTitleCell">Global Ranking</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td class="spaciousHalfTitleCell">Wallet ID</td>
+                <td>0x3D1Ca9237122BA98464F6F27ff228a1030F366cd</td>
+            </tr>
+        </table>
+        
     </div>
-</body>
-
-</html>
