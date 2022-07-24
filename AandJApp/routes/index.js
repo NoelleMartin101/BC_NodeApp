@@ -9,17 +9,23 @@ router.get('/', function(req, res, next) {
 router.get('/createAccount', function (req, res, next) {
   res.render('createAccount', { title: 'New Account' });
 });
-router.get('/ViewAthleteProfile', function (req, res, next) {
-  res.render('ViewAthleteProfile', { title: 'Profile' });
+router.get('/athleteProfile', function (req, res, next) {
+  res.render('athleteProfile', { title: 'Profile' });
 });
-router.get('/journal', function (req, res, next) {
-  res.render('journal', { title: 'Journal' });
+router.get('/journalEntries', function (req, res, next) {
+  res.render('journalEntries', { title: 'Journal' });
 });
 router.get('/aboutUs', function (req, res, next) {
   res.render('aboutUs', { title: 'What is CrossFit' });
 });
-router.get('/ViewAthleteBenchmarks', function (req, res, next) {
-  res.render('ViewAthleteBenchmarks', { title: 'Benchmarks' });
+router.get('/athleteBenchmarks', function (req, res, next) {
+  res.render('athleteBenchmarks', { title: 'Benchmarks' });
 });
 
+router.get('/events_current', function (req, res, next) {
+  res.render('events_current', { title: 'Current Event WODs' });
+});
+router.get('/events_previous', function (req, res, next) {
+  res.render('events_previous', { title: 'Previous Event WODs' });
+});
 module.exports = router;

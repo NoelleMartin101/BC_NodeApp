@@ -1,0 +1,111 @@
+<%- include partials/header.ejs %>
+<style>
+    table.SpaciousHalf {
+        margin: 35px 50px;
+        font-size: 10pt;
+        background-color: transparent;
+        border: 1pt solid #EDEDED;
+        }
+
+        table.SpaciousHalf td {
+        padding: 10px;
+        vertical-align: top;
+        border: 1pt solid #EDEDED;
+        }
+
+        table.SpaciousHalf td p {
+        padding: 10px;
+        border: 1pt solid #EDEDED;
+        }
+
+        .spaciousHalfTitleCell {
+        width: 120px;
+        background-color: transparent;
+        padding-left: 5px;
+        font-weight: bold;
+        }
+</style><form id="mainForm">
+    <div class="mainTable"> 
+        <table class="SpaciousHalf">    
+            <tr>
+                <td class="spaciousHalfTitleCell">Name</td>
+                <td>Emma McQuaid</td>
+                <td rowspan="6">
+                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="/athleteBenchmarks">View Benchmarks </a></button><br/><br />
+                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="" onclick="connectMetamaskReg()">Register for Open </a></button><br /><br />
+                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="" onclick="connectMetamaskSub()">Submit Scores </a></button><br /><br />
+                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="/events_current">View Event WODs </a></button><br /><br />
+                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="/events_previous">Previous Events </a></button> <br /><br />
+            </tr>
+            <tr>
+                <td class="spaciousHalfTitleCell">Date of Birth</td>
+                <td><input class="form-control" type="text" name="dob" placeholder="19/02/1992"/></td>
+                
+            </tr>
+            <tr>
+                <td class="spaciousHalfTitleCell">Affiliate</td>
+                <td><input class="form-control" type="text" name="affiliate" placeholder="Sligo"/></td>
+            </tr>
+            <tr>
+                <td class="spaciousHalfTitleCell">Height</td>
+                <td><input class="form-control" type="text" name="height" placeholder="162"/></td>
+            </tr>
+            <tr>
+                <td class="spaciousHalfTitleCell">Global Ranking</td>
+                <td><input class="form-control" type="text" name="globalRanking" placeholder="12" /></td>
+            </tr>
+            <tr>
+                <td class="spaciousHalfTitleCell">Wallet ID</td>
+                <td><input class="form-control" type="text" name="walletID"  placeholder="0x3D1Ca9237122BA98464F6F27ff228a1030F366cd" /></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <button class="btn btn-primary" type="button" >
+                        <i class="fa fa-save"></i>&nbsp;&nbsp;&nbsp;Save Updates
+                    </button><br /><br />
+                </td>
+            </tr>
+           
+            <tr>
+                <td colspan="3">
+                    <div id="readAreaRegister" width="100%">
+                        <!--Connecting to MetaMask -->
+                        <p id="userAreaRegister">Status: Not connected to Metamask</p>
+                        <!-- index html to meta-->
+                        <button class="btn btn-success" type="button"><i class="fa fa-tasks"></i>&nbsp;&nbsp;&nbsp;Register for Open
+                            </a></button>
+                    </div>
+                </td>
+            </tr> 
+            <tr>
+                <td colspan="3">
+                    <div id="readAreaSubmit" width="100%">
+                        <!--Connecting to MetaMask -->
+                        <p id="userAreaSumit">Status: Not connected to Metamask</p>
+                        <!-- index html to meta-->
+                        <button class="btn btn-success" type="button"><i class="fa fa-tasks"></i>&nbsp;&nbsp;&nbsp;Submit Open Scores
+                            </a></button>
+                    </div>
+                </td>
+            </tr>
+        </table>        
+    </div>
+</form>
+    <script>
+
+        let account;
+        const connectMetamaskReg = async () => {
+            if (window.ethereum !== "underfined") {
+                const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+                account = accounts[0];
+                document.getElementById("userAreaRegister").innerHTML = `User Account: ${account}`;
+            }
+        }
+        const connectMetamaskSub = async () => {
+                if (window.ethereum !== "underfined") {
+                    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+                    account = accounts[0];
+                    document.getElementById("userAreaSumit").innerHTML = `User Account: ${account}`;
+                }
+            }
+    </script>
