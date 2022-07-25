@@ -1,6 +1,15 @@
 <%- include partials/header.ejs %>
 
 <style>
+    .mainTable {
+        width: 900px;
+        height: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        color: #26466D;
+        background-color: #FFF;
+        /*#ECC3BF;*/
+    }
     table.SpaciousHalf {
         margin: 35px 50px;
         font-size: 10pt;
@@ -34,6 +43,8 @@
         border-radius: 50%;
     }
 </style>
+<form id="mainForm">
+<div class="mainTable">
 <button class="btn btn-default" type="button"><a href="/athleteProfile">Back</a></button><br /><br />
 <table class="SpaciousHalf">
     <tr><td colspan="4" class="spaciousHalfTitleCell">Benchmarks</td></tr>
@@ -73,4 +84,8 @@
         <td>Sprint</td>
         <td><input class="form-control" type="text" name="sprint400" /></td>
     </tr>
+    <tr><td colspan="4"><button class="btn btn-primary" type="button">
+        <i class="fa fa-save"></i>&nbsp;&nbsp;&nbsp;Save Updates
+    </button><br /><br /></td></tr>
 </table>
+</div></form>

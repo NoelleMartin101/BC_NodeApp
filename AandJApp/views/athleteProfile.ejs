@@ -1,5 +1,14 @@
 <%- include partials/header.ejs %>
 <style>
+    .mainTable {
+        width: 900px;
+        height: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        color: #26466D;
+        background-color: #FFF;
+        /*#ECC3BF;*/
+    }
     table.SpaciousHalf {
         margin: 35px 50px;
         font-size: 10pt;
@@ -29,18 +38,27 @@
         <table class="SpaciousHalf">    
             <tr>
                 <td class="spaciousHalfTitleCell">Name</td>
-                <td>Emma McQuaid</td>
+                <td><input class="form-control" type="text" name="name" placeholder="Emma McQuaid" /></td>
                 <td rowspan="6">
                     <button class="btn btn-default" type="button"><a class="btn logInBtn" href="/athleteBenchmarks">View Benchmarks </a></button><br/><br />
                     <button class="btn btn-default" type="button"><a class="btn logInBtn" href="" onclick="connectMetamaskReg()">Register for Open </a></button><br /><br />
-                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="" onclick="connectMetamaskSub()">Submit Scores </a></button><br /><br />
+                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="" onclick="connectMetamaskSub()">Submit Scores &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></button><br /><br />
                     <button class="btn btn-default" type="button"><a class="btn logInBtn" href="/events_current">View Event WODs </a></button><br /><br />
-                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="/events_previous">Previous Events </a></button> <br /><br />
+                    <button class="btn btn-default" type="button"><a class="btn logInBtn" href="/events_previous">Previous Events&nbsp;&nbsp;&nbsp;&nbsp; </a></button> <br /><br />
             </tr>
             <tr>
                 <td class="spaciousHalfTitleCell">Date of Birth</td>
                 <td><input class="form-control" type="text" name="dob" placeholder="19/02/1992"/></td>
                 
+            </tr>
+            <tr>
+                <td class="spaciousHalfTitleCell">Sex</td>
+                <td><select class="form-control"  width="50px" name="athleteSex" id="athleteSex" required>
+                    <option value="">Please Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select></td>
+            
             </tr>
             <tr>
                 <td class="spaciousHalfTitleCell">Affiliate</td>
@@ -56,7 +74,7 @@
             </tr>
             <tr>
                 <td class="spaciousHalfTitleCell">Wallet ID</td>
-                <td><input class="form-control" type="text" name="walletID"  placeholder="0x3D1Ca9237122BA98464F6F27ff228a1030F366cd" /></td>
+                <td colspan="2"><input class="form-control" type="text" name="walletID"  placeholder="0x3D1Ca9237122BA98464F6F27ff228a1030F366cd" /></td>
             </tr>
             <tr>
                 <td colspan="3">

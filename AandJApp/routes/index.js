@@ -15,6 +15,10 @@ router.get('/athleteProfile', function (req, res, next) {
 router.get('/journalEntries', function (req, res, next) {
   res.render('journalEntries', { title: 'Journal' });
 });
+
+router.get('/journalEntry_Add', function (req, res, next) {
+  res.render('journalEntry_Add', { title: 'Add Journal Entry' });
+});
 router.get('/aboutUs', function (req, res, next) {
   res.render('aboutUs', { title: 'What is CrossFit' });
 });
