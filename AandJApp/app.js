@@ -6,9 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
 // var viewAthleteRouter = require('./routes/athleteProfile');
-
 // var viewBenchmarksRouter = require('./routes/athleteBenchmarks');
 
 var app = express();

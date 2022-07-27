@@ -10,7 +10,7 @@
 	/*#ECC3BF;*/
 }
 </style>
-    <div class="mainTable">
+<div class="container">
       <br/>
       <div>
         <table class="logInTable">
@@ -33,7 +33,12 @@
               <!-- <button type="button" onclick=" logInValidation()">Sign In</button> -->
             </td>
           </tr>
-        </table>
+        </table>        
+      </div>
+      <br/>
+      <div id="resetPassword" style="display:none">
+          <input class="form-control" type="textg" name="email" size="50" placeholder="email" />
+          <button class="btn btn-default" type="button" data-id="0" onclick="resetPassword()">Reset Password </a></button>
       </div>
         <!-- <div class="float-container">
           <div class="float-child">
@@ -65,6 +70,16 @@
         </div> -->
         <br /><br />
         <button class="btn btn-default" type="button" data-id="0"><a href="/createAccount"> Create Account </a></button>
-        <button class="btn btn-default" type="button" data-id="0"><a href="/createAccount"> Forgot Password </a></button>
+        <button class="btn btn-default" type="button" data-id="0" onclick="showResetPassword()">Forgot Password </a></button>
     </div>
+    <script>
+      
+        function showResetPassword() {
+          document.getElementById("resetPassword").style.display = "block";
+        }
+        
+          function resetPassword() {
+            document.getElementById("resetPassword").style.display = "none";
+          }
+    </script>
 <%- include partials/footer.ejs %>
