@@ -1,49 +1,15 @@
 const { Connection, Request } = require("tedious");
 
-// Create connection to database
+
 const config = {
-    authentication: {
-        options: {
-            userName: "NoelleMartin", // update me
-            password: "AmsterdamApril2022#" // update me
-        },
-        type: "default"
-    },
-    server: "bc-ncirl-prj.database.windows.net", // update me
+    user: "",
+    password: "",
+    server: "DESKTOP-0AH4JG6\SQLSERVER2019",
+    database: "CrossfitTracker",
     options: {
-        database: "BC_CrossfitTracker", //update me
-        encrypt: true
+        trustServerCertificate: true
     }
 };
-
-/* 
-    //Use Azure VM Managed Identity to connect to the SQL database
-    const config = {
-        server: process.env["db_server"],
-        authentication: {
-            type: 'azure-active-directory-msi-vm',
-        },
-        options: {
-            database: process.env["db_database"],
-            encrypt: true,
-            port: 1433
-        }
-    };
-
-    //Use Azure App Service Managed Identity to connect to the SQL database
-    const config = {
-        server: process.env["db_server"],
-        authentication: {
-            type: 'azure-active-directory-msi-app-service',
-        },
-        options: {
-            database: process.env["db_database"],
-            encrypt: true,
-            port: 1433
-        }
-    });
-
-*/
 
 const connection = new Connection(config);
 

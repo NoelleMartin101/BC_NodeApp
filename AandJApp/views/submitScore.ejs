@@ -1,0 +1,107 @@
+<%- include partials/header.ejs %>
+    <br />
+    <style>
+        .mainTable {
+            width: 900px;
+            height: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #26466D;
+            background-color: #FFF;
+            /*#ECC3BF;*/
+        }
+    </style>
+<form id="mainForm">
+    <div class="container"><button class="btn btn-default" type="button"><a href="/athleteProfile">Back</a></button><br /><br />
+        Submit your score for the latest WOD <br/>
+        <button class="btn btn-success logInBtn" type="button" onclick="connectMetamaskSub()">Connect to Wallet
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></button><br /><br />
+        <input class="form-control" type="text" name="score" placeholder="WOD Score" />
+        <div id="readAreaSubmit" width="100%">
+            <p id="userAreaSubmit">Status: Not connected to Metamask</p>
+            <button class="btn btn-success" type="button" onclick="connectContract"><i class="fa fa-tasks"></i>&nbsp;&nbsp;&nbsp;Submit Open Scores
+                </a></button>
+        </div>
+    </div>    
+</form>
+<script>
+    let account;
+    const connectMetamaskSub = async () => {
+            if (window.ethereum !== "underfined") {
+                const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+                account = accounts[0];
+                document.getElementById("userAreaSubmit").innerHTML = `User Account: ${account}`;
+            }
+        }
+    const connectContract = async () => {
+            const ABI = [// ABI Application Binary Interface                
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "score",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "postScore",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "athletes",
+                    "outputs": [
+                        {
+                            "internalType": "address",
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "getAthletes",
+                    "outputs": [
+                        {
+                            "internalType": "address[16]",
+                            "name": "",
+                            "type": "address[16]"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                }
+                
+            ];
+            const Address = "0x7DA14da982D3bD17BDCF2a0Aa7517E0Eede752fE";
+            window.web3 = await new Web3(window.ethereum);
+            window.contract = await new window.web3.eth.Contract(ABI, Address);
+            submitScore();
+        }
+    const submitScore = async () => {
+            const myEntry = document.getElementById("score").value;
+            await window.contract.methods.postScore(myEntry).send({ from: account });
+        }
+</script>
+<%- include partials/footer.ejs %>

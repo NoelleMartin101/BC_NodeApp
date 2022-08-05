@@ -11,7 +11,7 @@
     }
 </style>
 <div class="container">
-<form id="AddEntry">
+<form id="AddEntry" action="/journalEntry_Add" method="post">
     <table class="SpaciousHalf" style="width: 50%; margin: 35px 50px; font-size: 10pt; background-color: transparent;">
         <tr>
             <td class="spaciousTitleCell">Title</td>
@@ -31,18 +31,39 @@
         </tr>   
             <tr>
                 <td>
-                    <button class="btn btn-primary" type="button" onclick="insertRecord()"><i class="fa fa-save"></i>&nbsp;&nbsp;&nbsp;Save
+                    <button class="btn btn-primary" type="submit" ><i class="fa fa-save"></i>&nbsp;&nbsp;&nbsp;Save
                         </a></button><br /><br />
                 </td>
             </tr>
     </table>
 </form>
-</div>
-<script>
+</div>  
+<!-- <script>
+    const sql = require('mssql')
+
     var title = document.forms["AddEntry"]["Title"].value;
-    var entry = document.forms["AddEntry"]["Entry"].value;
+    var details = document.forms["AddEntry"]["Entry"].value;
 
-</script>
-
+    const config = {
+        user: '',
+        password: '',
+        server: 'DESKTOP-0AH4JG6\SQLSERVER2019',
+        database: 'CrossfitTracker',
+        options: {
+            trustServerCertificate: true
+        }
+    };
+    const insertNewJournalEntry = async () => {
+        try {
+            // make sure that any items are correctly URL encoded in the connection string
+            await sql.connect(config)
+            //const result = await sql.query`select * from DiaryEntries where DiaryEntryID = 1` 
+            const result = await sql.query`exec DiaryEntries_Insert ${title}, ${details}`
+            console.dir(result)
+        } catch (err) {
+            // ... error checks
+        }
+    }
+</script> -->
 
 <%- include partials/footer.ejs %>

@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0; //anything above 0.5.0
 
-contract SubmitScore{
+contract SubmitScore{+
     address[16] public athletes;
     // Posting a Score
     function postScore(uint score) public returns (uint) {

@@ -1,0 +1,49 @@
+<%- include partials/header.ejs %>
+<style>
+    .mainTable {
+        width: 900px;
+        height: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        color: #26466D;
+        background-color: #FFF;
+        /*#ECC3BF;*/
+    }
+</style>
+<div class="container">
+<form id="AddEntry" action="/journalEntry_Add" method="post">
+    <table class="SpaciousHalf" style="width: 50%; margin: 35px 50px; font-size: 10pt; background-color: transparent;">
+        <tr>
+            <td class="spaciousTitleCell">Title</td>
+        </tr>
+        <tr>
+            <td>
+                <input class="form-control" type="text" name="Title" size="40" />
+            </td>
+        </tr>
+        <tr>
+            <td>Entry</td>
+        </tr>
+        <tr>
+            <td>
+                <textarea class="form-control" rows="8" cols="40" name="Entry" required></textarea>
+            </td>
+        </tr>   
+            <tr>
+                <td>
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i>&nbsp;&nbsp;&nbsp;Save
+                        </a></button><br /><br />
+                </td>
+            </tr>
+    </table>
+</form>
+</div>
+<script>
+    var title = document.forms["AddEntry"]["Title"].value;
+    var entry = document.forms["AddEntry"]["Entry"].value;
+
+
+</script>
+
+
+<%- include partials/footer.ejs %>

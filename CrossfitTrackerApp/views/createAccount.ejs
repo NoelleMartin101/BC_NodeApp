@@ -1,0 +1,54 @@
+<%- include partials/header.ejs %>
+<br/>
+<style>
+    .mainTable {
+        width: 900px;
+        height: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        color: #26466D;
+        background-color: #FFF;
+        /*#ECC3BF;*/
+    }
+</style>
+<form id="mainForm">
+    <div class="mainTable">
+        <table class="SpaciousHalf">
+           
+            <tr>
+                <td>UserName:</td>
+                <td><input class="form-control" type="text" name="userName" /></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input class="form-control" type="password" name="password" /></td>
+            </tr>
+            <tr>
+                <td>Confirm Password:</td>
+                <td><input class="form-control" type="password" name="confirmpassword" /></td>
+            </tr>
+            <tr>
+                <td>Email Address:</td>
+                <td><input class="form-control" type="text" name="email" /></td>
+            </tr>
+            <tr>
+                <td>Confirm Email Address:</td>
+                <td><input class="form-control" type="text" name="confirmemail" /></td>
+            </tr>
+            <tr>
+                <td>Account Type:</td>
+                <td><select class="form-control" width="50px" name="accountType" id="accountType" required>
+                    <option value="">Please Select</option>
+                    <option value="Athlete">Athlete</option>
+                    <option value="Judge">Judge</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td colspan="4"><button class="btn btn-primary" type="button"><a href="/athleteProfile" style="color:#fff; text-decoration:none">
+                        <i class="fa fa-save"></i>&nbsp;&nbsp;&nbsp; Create Account</a>
+                    </button><br /><br /></td>
+            </tr>
+        </table>
+    </div>
+</form>
+<%- include partials/footer.ejs %>
