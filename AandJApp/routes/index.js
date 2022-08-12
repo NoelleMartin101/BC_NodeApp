@@ -37,6 +37,10 @@ router.get('/submitScore', function (req, res, next) {
   res.render('submitScore', { title: 'Submit Score' });
 });
 
+router.get('/privacy', function (req, res, next) {
+  res.render('privacy', { title: 'Privacy' });
+});
+
 
 
 // router.post('/journalEntry_Add', async function (req, res, next) {

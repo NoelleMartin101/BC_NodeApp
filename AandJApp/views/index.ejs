@@ -76,10 +76,12 @@
       
         function showResetPassword() {
           document.getElementById("resetPassword").style.display = "block";
+          document.getElementById("logInTable").style.display = "none";
         }
         
           function resetPassword() {
             document.getElementById("resetPassword").style.display = "none";
+            document.getElementById("logInTable").style.display = "block";
           }
     </script>
 <%- include partials/footer.ejs %>
