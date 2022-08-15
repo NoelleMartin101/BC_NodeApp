@@ -3,7 +3,7 @@ pragma experimental ABIEncoderV2;
 
 contract ManageScores {
     
-    uint public subScore = 0;
+    uint public scoreCount = 0;
 
     struct Score {
         int userID;
@@ -15,23 +15,23 @@ contract ManageScores {
     mapping(uint => Score) public competitionScores;
     
     event ScoreStored(
-        int userID;
-        string userName;
-        int score;
-        string date;
+        int userID,
+        string userName,
+        int score,
+        string date,
         uint id
     );
     
-    function storeTemp(
-         int _userID;
-        string memory _userName;
-        int _score;
-        string memory _date;
+    function storeScore(
+         int _userID,
+        string memory _userName,
+        int _score,
+        string memory _date
     ) 
     
     public {
         Score memory score = Score(_userID, _userName, _score, _date);
-        scores[scoreCount] = score;
+        competitionScores[scoreCount] = score;
         uint id = scoreCount;
         scoreCount++;
         emit ScoreStored(_userID, _userName, _score, _date, id);

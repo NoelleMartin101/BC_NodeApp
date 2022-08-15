@@ -86,17 +86,6 @@
                         </button><br /><br />
                     </td>
                 </tr>
-
-                <tr>
-                    <td colspan="3">
-                        <div id="readAreaSubmit" width="100%">
-                            <button class="btn btn-success" type="button" onclick="registerforCompetition()"><i
-                                    class="fa fa-tasks"></i>&nbsp;&nbsp;&nbsp;Submit Open Scores
-                                </a></button>
-                        </div>
-                        <p id="userAreaRegister">Status: Not connected to Contract</p>
-                    </td>
-                </tr>
             </table>
         </div>
     </form>
@@ -113,25 +102,41 @@
         const connectContract = async () => {
             const ABI = [
                 {
-                    "constant": false,
+                    "anonymous": false,
                     "inputs": [
                         {
-                            "internalType": "uint256",
-                            "name": "compID",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "registerComp",
-                    "outputs": [
+                            "indexed": false,
+                            "internalType": "int256",
+                            "name": "userID",
+                            "type": "int256"
+                        },
                         {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "userName",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "int256",
+                            "name": "competitionID",
+                            "type": "int256"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "date",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
                             "internalType": "uint256",
-                            "name": "",
+                            "name": "id",
                             "type": "uint256"
                         }
                     ],
-                    "payable": false,
-                    "stateMutability": "nonpayable",
-                    "type": "function"
+                    "name": "RegistrationStored",
+                    "type": "event"
                 },
                 {
                     "constant": true,
@@ -142,20 +147,117 @@
                             "type": "uint256"
                         }
                     ],
-                    "name": "athletes",
+                    "name": "competitionRegistrations",
                     "outputs": [
                         {
-                            "internalType": "address",
-                            "name": "",
-                            "type": "address"
+                            "internalType": "int256",
+                            "name": "userID",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "userName",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "int256",
+                            "name": "competitionID",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "date",
+                            "type": "string"
                         }
                     ],
                     "payable": false,
                     "stateMutability": "view",
                     "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "registrationCount",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "retrieveRegistration",
+                    "outputs": [
+                        {
+                            "components": [
+                                {
+                                    "internalType": "int256",
+                                    "name": "userID",
+                                    "type": "int256"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "userName",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "int256",
+                                    "name": "competitionID",
+                                    "type": "int256"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "date",
+                                    "type": "string"
+                                }
+                            ],
+                            "internalType": "struct ManageRegistrations.Registration[]",
+                            "name": "",
+                            "type": "tuple[]"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "internalType": "int256",
+                            "name": "_userID",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_userName",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "int256",
+                            "name": "_competitionID",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_date",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "storeRegistration",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
                 }
             ];
-            const Address = "0x9A5C7059B4162F3CA7fA24c21A1D1e12BF7E3c07";
+            const Address = "0x2ce179De099818e1f1b0B9b4E35f49d4Ebe341a8";
             window.web3 = await new Web3(window.ethereum);
             window.contract = await new window.web3.eth.Contract(ABI, Address);
         }

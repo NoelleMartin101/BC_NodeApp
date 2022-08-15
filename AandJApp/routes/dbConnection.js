@@ -1,9 +1,9 @@
 const connection = {
     connectionLimit: 10,
-    host: "DESKTOP-0AH4JG6\SQLSERVER2019",
-    // user: "Abc",
-    // password: "1234",
-    database: "CrossfitTracker",
+    host: "bc-ncirl-prj.database.windows.net",
+    userName: "NoelleMartin", 
+    password: "AmsterdamApril2022#",
+    database: "BC_CrossfitTracker",
     multipleStatements: false
 };
 

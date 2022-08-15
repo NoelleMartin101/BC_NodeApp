@@ -1,5 +1,4 @@
 <%- include partials/header.ejs %>
-<br/>
 <style>
     .mainTable {
         width: 900px;
@@ -11,66 +10,29 @@
         /*#ECC3BF;*/
     }
 </style>
-<form action="/register" method="POST">
-    <div class="mainTable">
-    <fieldset>
-        <label>Username</label>
-        <input class="form-control" type="text" id='username' name="username" placeholder="username" required>
-        <br>
-
-        <label>Email ID</label>
-        <input  class="form-control" type="email" id='email' name="email" placeholder="abc@example.com" required>
-        <br>
-
-        <label>Password</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-        <br>
-
-        <button class="btn btn-primary" type="button"><a href="/athleteProfile" style="color:#fff; text-decoration:none">
-                <i class="fa fa-save"></i>&nbsp;&nbsp;&nbsp; Create Account</a>
-        </button>
-    </fieldset>
-    </div>
-</form>
-<!--<form id="mainForm">
-    <div class="mainTable">
-         <table class="SpaciousHalf">
-           
+<div class="container">
+<form action="/registerNewUser" method="post">
+         <table class="SpaciousHalf"  style="width: 50%; margin: 35px 50px; font-size: 10pt; background-color: transparent;">           
             <tr>
-                <td Width="250px">UserName:</td>
-                <td><input class="form-control" type="text" name="userName" /></td>
+                <td class="spaciousTitleCell">UserName:</td>
+                <td><input class="form-control" type="text" name="userName" maxlength="25" placeholder="username" required /></td>
             </tr>
             <tr>
                 <td>Password:</td>
-                <td><input class="form-control" type="password" name="password" /></td>
-            </tr>
-            <tr>
-                <td>Confirm Password:</td>
-                <td><input class="form-control" type="password" name="confirmpassword" /></td>
+                <td><input class="form-control"  type="password" maxlength="15" name="Password"  required /></td>
             </tr>
             <tr>
                 <td>Email Address:</td>
-                <td><input class="form-control" type="text" name="email" /></td>
-            </tr>
-            <tr>
-                <td>Confirm Email Address:</td>
-                <td><input class="form-control" type="text" name="confirmemail" /></td>
-            </tr>
-            <tr>
-                <td>Account Type:</td>
-                <td><select class="form-control" width="50px" name="accountType" id="accountType" required>
-                    <option value="">Please Select</option>
-                    <option value="Athlete">Athlete</option>
-                    <option value="Judge">Judge</option>
-                </select></td>
+                <td><input class="form-control" type="text" name="Email" placeholder="abc@example.com" required/></td>
             </tr>
             <tr>
                 <td colspan="4" align="right"><br/><br />
-                    <button class="btn btn-primary" type="button"><a href="/athleteProfile" style="color:#fff; text-decoration:none">
-                        <i class="fa fa-save"></i>&nbsp;&nbsp;&nbsp; Create Account</a>
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i>&nbsp;&nbsp;&nbsp;Create Account
+                        </a></button><br /><br />
                     </button><br /><br /></td>
             </tr>
         </table>
     </div>
-</form> -->
+</form>
+</div>
 <%- include partials/footer.ejs %>

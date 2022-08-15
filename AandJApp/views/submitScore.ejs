@@ -11,7 +11,7 @@
             /*#ECC3BF;*/
         }
     </style>
-    <form id="mainForm">
+    <form id="mainForm" action="/ManageScore" method="post"></form>
         <div class="container"><button class="btn btn-default" type="button"><a href="/athleteProfile">Back</a></button><br /><br />
 
             <p id="userAreaWallet">Status: Not connected to Metamask</p>
@@ -24,8 +24,16 @@
                     </a></button>
             </div>
             <br /><br /><br />
-            Submit your score for the latest WOD <br />
-            <input type="number" name="score" />
+            Submit your score for the latest WOD <br /><br />
+            Event ID 
+            <input type="number" name="EventWorkoutID" /><br />
+            <br/>
+            User ID
+            <input type="number" name="UserID" /><br /><br />
+            User Name 
+            <input type="text" name="UserName" /><br /><br />
+            Event Score
+            <input type="number" name="Score" /><br />
             <div id="readAreaSubmit" width="100%">
                 <button class="btn btn-success" type="button" onclick="submitScore()"><i
                         class="fa fa-tasks"></i>&nbsp;&nbsp;&nbsp;Submit Open Scores
@@ -34,13 +42,11 @@
         </div>
     </form>
     <script>
-        // function getVal() {
-        //     //alert("We're in!!!!");
-        //     var myScore = $(`score`).val();                
-        //         alert(myScore.val());
-        //     };
-
+     
         let account;
+        
+        var GAS_LIMIT = 1000000;
+        var Score = "0xe00f31Faf7Fd981AFdFeCF9Db63784C198eA7d92";
         const connectMetamaskSub = async () => {
             if (window.ethereum !== "underfined") {
                 const accounts = await ethereum.request({ method: "eth_requestAccounts" });
@@ -51,25 +57,41 @@
         const connectContract = async () => {
             const ABI = [
                 {
-                    "constant": false,
+                    "anonymous": false,
                     "inputs": [
                         {
-                            "internalType": "uint256",
-                            "name": "score",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "postScore",
-                    "outputs": [
+                            "indexed": false,
+                            "internalType": "int256",
+                            "name": "userID",
+                            "type": "int256"
+                        },
                         {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "userName",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "int256",
+                            "name": "score",
+                            "type": "int256"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "date",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": false,
                             "internalType": "uint256",
-                            "name": "",
+                            "name": "id",
                             "type": "uint256"
                         }
                     ],
-                    "payable": false,
-                    "stateMutability": "nonpayable",
-                    "type": "function"
+                    "name": "ScoreStored",
+                    "type": "event"
                 },
                 {
                     "constant": true,
@@ -80,30 +102,148 @@
                             "type": "uint256"
                         }
                     ],
-                    "name": "athletes",
+                    "name": "competitionScores",
                     "outputs": [
                         {
-                            "internalType": "address",
-                            "name": "",
-                            "type": "address"
+                            "internalType": "int256",
+                            "name": "userID",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "userName",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "int256",
+                            "name": "score",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "date",
+                            "type": "string"
                         }
                     ],
                     "payable": false,
                     "stateMutability": "view",
                     "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "retrieveScore",
+                    "outputs": [
+                        {
+                            "components": [
+                                {
+                                    "internalType": "int256",
+                                    "name": "userID",
+                                    "type": "int256"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "userName",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "int256",
+                                    "name": "score",
+                                    "type": "int256"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "date",
+                                    "type": "string"
+                                }
+                            ],
+                            "internalType": "struct ManageScores.Score[]",
+                            "name": "",
+                            "type": "tuple[]"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "scoreCount",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "internalType": "int256",
+                            "name": "_userID",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_userName",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "int256",
+                            "name": "_score",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_date",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "storeScore",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
                 }
             ];
-            const Address = "0xbCA22768F1C0d533DC81435c53B458A64F714b1E";
+            const Address = "0xe00f31Faf7Fd981AFdFeCF9Db63784C198eA7d92";
             window.web3 = await new Web3(window.ethereum);
             window.contract = await new window.web3.eth.Contract(ABI, Address);
             document.getElementById("userAreaContract").innerHTML = "Connection Status: Success";
         }
         const submitScore = async () => {
-            //const myScore = document.getElementById("score").innerHTML;
-            const myScore = $(`score`).val();              
-            //const myScore = document.getElementById("score").value;
-            await window.contract.methods.postScore(myScore).send({from:account});            
+            const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+            account = accounts[0];               
+            const eventWorkoutID = $(`EventWorkoutID`).val();             
+            const userID = $(`UserID`).val();         
+            const userName = $(`UserName`).val();                     
+            const myScore = $(`Score`).val(); 
+            const date = new Date();
+           
+            try {
+                const scoreInstance = await Score.deployed();
+                
+                console.log("1")
+                await scoreInstance.storeScore.sendTransaction(
+                    eventWorkoutID, userID, userName, date,
+                    { from: account, gas: GAS_LIMIT }
+                );
+                
+                console.log("2")
+
+            } catch (err) {
+                console.log("error")
+                console.log(err)
+            }
+                     
             document.getElementById("userAreaWallet").innerHTML = `Posted score of: ${myScore} Congratulations!!!`;
         }
+        
     </script>
     <%- include partials/footer.ejs %>
